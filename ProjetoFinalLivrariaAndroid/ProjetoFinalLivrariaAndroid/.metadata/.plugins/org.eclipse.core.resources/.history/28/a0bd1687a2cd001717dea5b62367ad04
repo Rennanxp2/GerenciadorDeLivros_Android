@@ -1,0 +1,54 @@
+package app.Activities;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class dbLivraria extends SQLiteOpenHelper{
+	
+	
+	/* Construtor que recebe como parâmetro: 
+	 * o contexto, o nome do banco e a versão
+	 */
+	
+	public dbLivraria(Context context, String dbName, int version){
+		
+		super(context, dbName, null, version);
+		
+	}
+	
+	/* Este método é chamado quando a conexão com o banco de dados for aberta pela primeira vez.
+	 * É aqui que criaremos o banco de dados, com o comando sql CREATE.
+	 */
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		String  CREATE_TABLE = "CREATE TABLE  livros (" +
+				"id 		INTEGER PRIMARY KEY AUTOINCREMENT," +
+				"titulo 	TEXT," +
+				"subtitulo  TEXT," +
+				"autor 		TEXT," +
+				"isbn 		INTEGER," +
+				"editora 	TEXT," +
+				"edicao 	TEXT," +
+				"ano 		INTEGER," +
+				"paginas 	INTEGER," +
+				"categoria  TEXT)";
+		
+		db.execSQL(CREATE_TABLE);
+        
+        String tabLogin = 
+        		"CREATE TABLE login (" +
+                        "login VARCHAR(15) PRIMARY KEY," +
+                        "senha VARCHAR(15))";
+        db.execSQL(tabLogin);
+      db.execSQL("INSERT INTO login VALUES (?,?)", new String[]{"livros","1234"});
+        
+	}
+	
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		
+	}
+	
+
+}

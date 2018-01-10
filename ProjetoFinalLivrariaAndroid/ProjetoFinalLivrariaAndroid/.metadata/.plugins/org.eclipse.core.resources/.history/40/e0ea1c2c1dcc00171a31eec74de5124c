@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout android:orientation="vertical" 
+        android:layout_height="wrap_content" 
+        android:id="@+id/linearLayout2" 
+        android:layout_width="wrap_content">
+            <LinearLayout android:layout_height="wrap_content" 
+                android:layout_width="match_parent" 
+                android:id="@+id/linearLayout5">
+                <TextView android:id="@+id/txtPesquisar" 
+                android:text="Pesquisar por:" 
+                android:layout_height="wrap_content" 
+                android:textAppearance="?android:attr/textAppearanceMedium" 
+                android:layout_gravity="center" 
+                android:layout_width="142dp"
+                android:typeface="serif" ></TextView>
+                <RadioGroup android:id="@+id/rgPesquisar" 
+           
+         android:orientation="horizontal"
+                 android:layout_width="fill_parent" 
+                android:layout_height="wrap_content">
+                <RadioButton android:text="Nome" 
+                android:layout_height="wrap_content" 
+                android:id="@+id/rbNome" 
+                android:layout_width="wrap_content" 
+                android:checked="true"
+                android:typeface="serif"></RadioButton>
+                <RadioButton android:text="Cidade" 
+                android:layout_height="wrap_content" 
+                android:id="@+id/rbCidade" 
+                android:layout_width="wrap_content"
+                android:typeface="serif" ></RadioButton>
+                </RadioGroup>
+            </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content" 
+        android:layout_width="match_parent" 
+        android:id="@+id/linearLayout4" 
+        android:weightSum="1">
+        <LinearLayout android:orientation="vertical" 
+            android:id="@+id/linearLayout3" 
+            android:layout_width="235dp" 
+            android:layout_height="wrap_content">
+            
+<TextView android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:id="@+id/txtPesquisa" 
+            android:text="Texto a Pesquisar: " 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content"
+            android:typeface="serif" ></TextView>
+            <EditText android:layout_height="wrap_content" 
+            android:id="@+id/edtPesquisar" 
+            android:layout_width="match_parent">
+            <requestFocus></requestFocus>
+            </EditText>
+        </LinearLayout>
+    <LinearLayout android:layout_height="match_parent" 
+        android:id="@+id/linearLayout1" 
+        android:orientation="vertical" 
+        android:layout_width="match_parent">
+        <TextView android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:id="@+id/txt" 
+        android:text=" " 
+        android:layout_height="wrap_content" 
+        android:layout_width="match_parent"></TextView>
+        <Button android:layout_width="wrap_content" 
+        android:text="Pesquisar" 
+        android:id="@+id/btnPesquisar" 
+        android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+</LinearLayout>
+<TextView android:id="@+id/txtResultado" 
+android:layout_height="wrap_content" 
+android:text="TextView" 
+android:layout_width="match_parent"
+android:typeface="monospace"></TextView>
+</LinearLayout>

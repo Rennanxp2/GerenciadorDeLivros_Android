@@ -1,0 +1,19 @@
+
+Tsquid:S2129“"!Remove this "Integer" constructor(è›÷ıÿÿÿÿÿH£RMAJORZ
+CODE_SMELL
+Osquid:S2129–"!Remove this "Integer" constructor(¬†Ë¥H¤RMAJORZ
+CODE_SMELL
+Tsquid:S2129—"!Remove this "Integer" constructor(ÈÃ’íúÿÿÿÿH¥RMAJORZ
+CODE_SMELL
+squid:S1319t"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(†î‡¯HRMINORZ
+CODE_SMELL
+Nsquid:S2129D"!Remove this "Integer" constructor(¬†Ë¥H¡RMAJORZ
+CODE_SMELL
+~squid:S00117$"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×æôwHŸRMINORZ
+CODE_SMELL
+Ssquid:S2129E"!Remove this "Integer" constructor(ÈÃ’íúÿÿÿÿH¢RMAJORZ
+CODE_SMELL
+Šsquid:S1488o"]Immediately return this expression instead of assigning it to the temporary variable "livro".(·Œ–àHRMINORZ
+CODE_SMELL
+Ssquid:S2129A"!Remove this "Integer" constructor(è›÷ıÿÿÿÿÿH RMAJORZ
+CODE_SMELL

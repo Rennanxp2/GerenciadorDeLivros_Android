@@ -1,0 +1,48 @@
+package app.LivroAdapter;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+import app.catalogolivros.Livro;
+import app.catalogolivros.R;
+
+public class LivroAdapterCategoria extends ArrayAdapter<Livro> {
+
+	private final Context context;
+	private final ArrayList<Livro>elementos;
+	
+	public LivroAdapterCategoria(Context context, ArrayList<Livro>elementos) {
+		super(context, R.layout.linhacategoria, elementos);
+		
+		this.context = context;
+		this.elementos = elementos;
+	}
+	
+	public View getView(int position, View ConvertView, ViewGroup parent) {
+	
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		View rowView = inflater.inflate(R.layout.linhacategoria, parent, false);
+		
+		TextView titulo = (TextView) rowView.findViewById(R.id.txtTitulo);
+		
+		TextView subtitulo = (TextView) rowView.findViewById(R.id.txtSubtitulo);
+
+		TextView categoria = (TextView) rowView.findViewById(R.id.txtCategoria);
+		
+		
+		titulo.setText(elementos.get(position).getTitulo());
+		
+		subtitulo.setText(elementos.get(position).getSubTitulo());
+
+		categoria.setText((elementos.get(position).getCategoria()));
+
+		
+		return rowView;
+	}
+}

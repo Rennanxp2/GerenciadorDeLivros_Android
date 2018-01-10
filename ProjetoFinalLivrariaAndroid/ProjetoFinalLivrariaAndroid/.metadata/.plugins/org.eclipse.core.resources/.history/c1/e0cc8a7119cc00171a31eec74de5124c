@@ -1,0 +1,16 @@
+package app.android_pesquisardados;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+
+public class unFuncoes 
+{
+public static void MensagemAlerta(String titulo, String corpo, Activity Atividade)
+    {    
+AlertDialog.Builder infoResultado = new   AlertDialog.Builder(Atividade);
+          infoResultado.setTitle(titulo);
+         infoResultado.setMessage(corpo);  
+          infoResultado.setNeutralButton("Ok",null);
+         infoResultado.show(); 
+    } 
+}

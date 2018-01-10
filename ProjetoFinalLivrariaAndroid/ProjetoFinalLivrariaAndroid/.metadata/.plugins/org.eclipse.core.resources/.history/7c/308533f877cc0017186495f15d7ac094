@@ -1,0 +1,17 @@
+package app.catalogolivros;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import app.catalogolivros.R;
+import app.catalogolivros.R.layout;
+
+public class UpdateDelete extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_update_delete);
+	}
+}

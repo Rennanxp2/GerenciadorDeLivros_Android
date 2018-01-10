@@ -1,0 +1,58 @@
+package app.Activities;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import app.BdsSqliteHelper.BDSQLiteHelper;
+import app.catalogolivros.R;
+import app.livroDAO.Livro;
+
+public class UpdateDeleteCampos extends Activity {
+
+	private BDSQLiteHelper bd;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_update_delete_campos);
+		
+		Intent intent = getIntent();
+		
+		final int id = intent.getIntExtra("ID", 0);
+		bd= new BDSQLiteHelper(this);
+		Livro livro = bd.getLivro(id);
+		
+		final EditText titulo    = (EditText) findViewById(R.id.edtTitulo);
+		final EditText subtitulo = (EditText) findViewById(R.id.edtSubtitulo);
+		final EditText autor	   = (EditText) findViewById(R.id.edtAutor);
+		final EditText isbn	   = (EditText) findViewById(R.id.edtIsbn);
+		final EditText editora   = (EditText) findViewById(R.id.edtEditora);
+		final EditText edicao	   = (EditText) findViewById(R.id.edtEdicao);
+		final EditText ano	   = (EditText) findViewById(R.id.edtAno);
+		final EditText paginas   = (EditText) findViewById(R.id.edtPaginas);
+		final Spinner  categoria = (Spinner) findViewById(R.id.edtCategoria);
+		
+		titulo.setText(livro.getTitulo());
+		subtitulo.setText(livro.getSubTitulo());
+		autor.setText(livro.getAutor());
+		isbn.setText(String.valueOf(livro.getIsbn()));
+		editora.setText(livro.getEditora());
+		edicao.setText(livro.getEdicao());
+		ano.setText(String.valueOf(livro.getAno()));
+		paginas.setText(String.valueOf(livro.getPaginas()));
+		
+		String compareValue = "some value";
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categoriaArray, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		categoria.setAdapter(adapter);
+		if (!compareValue.equals(null)) {
+		    int spinnerPosition = adapter.getPosition(compareValue);
+		    categoria.setSelection(spinnerPosition);
+		    
+		    
+		}
+	}
+}

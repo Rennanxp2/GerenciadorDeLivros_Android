@@ -1,0 +1,86 @@
+package app.Activities;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import app.BdsSqliteHelper.BDSQLiteHelper;
+import app.LivroAdapter.LivroAdapter;
+import app.catalogolivros.R;
+import app.livroDAO.Livro;
+
+public class UpdateDelete extends Activity {
+
+
+	private BDSQLiteHelper bd;
+	ArrayList<Livro> listaLivros;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_update_delete);
+
+		bd = new BDSQLiteHelper(this);
+				
+	}
+	
+	@Override
+	protected void onStart() {
+		
+		super.onStart();
+			ListView lista = (ListView) findViewById(R.id.lvLivros);
+			listaLivros = bd.getAllLivros();
+			LivroAdapter adapter = new LivroAdapter(this, listaLivros);
+			lista.setAdapter(adapter);
+			
+			Intent intent= getIntent();
+			final int id = intent.getIntExtra("ID", 0);
+			bd= new BDSQLiteHelper(this);
+			final Livro livro = bd.getLivro(id);
+			
+			lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				
+				@Override
+				public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+					
+					Intent intent= new Intent(UpdateDelete.this, UpdateDeleteCampos.class);
+					startActivity(intent);
+					
+					
+					final EditText titulo    = (EditText) findViewById(R.id.edtTitulo);
+					final EditText subtitulo = (EditText) findViewById(R.id.edtSubtitulo);
+					final EditText autor	 = (EditText) findViewById(R.id.edtAutor);
+					final EditText isbn	     = (EditText) findViewById(R.id.edtIsbn);
+					final EditText editora   = (EditText) findViewById(R.id.edtEditora);
+					final EditText edicao	 = (EditText) findViewById(R.id.edtEdicao);
+					final EditText ano	     = (EditText) findViewById(R.id.edtAno);
+					final EditText paginas   = (EditText) findViewById(R.id.edtPaginas);
+					final Spinner  categoria = (Spinner)  findViewById(R.id.edtCategoria);
+					final Button   atualizar = (Button)   findViewById(R.id.btnAtualizar);
+					final Button   deletar = (Button)   findViewById(R.id.btnDeletar);
+					
+					
+					titulo.setText(livro.getTitulo());
+					subtitulo.setText(livro.getSubTitulo());
+					autor.setText(livro.getAutor());
+					isbn.setText(String.valueOf(livro.getIsbn()));
+					editora.setText(livro.getEditora());
+					edicao.setText(livro.getEdicao());
+					ano.setText(String.valueOf(livro.getAno()));
+					paginas.setText(String.valueOf(livro.getPaginas()));
+					categoria.setSelection(listaLivros.indexOf("Categoria"));
+					
+										
+				}
+			});
+		}
+
+}

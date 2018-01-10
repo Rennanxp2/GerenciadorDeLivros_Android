@@ -1,0 +1,120 @@
+package app.android_pesquisardados;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import java.util.ArrayList;
+import java.util.List;
+import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	Cursor ponteiro;
+	SQLiteDatabase bancodados;
+	TextView resultado;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+	     abreoucriaBD();              
+         
+	     Button btPesquisar = (Button) findViewById(R.id.btnPesquisar);
+	     btPesquisar.setOnClickListener(new View.OnClickListener() 
+	          {
+	              @Override
+	              public void onClick(View v) 
+	              {
+	     resultado = (TextView) findViewById(R.id.txtResultado);
+	     RadioGroup rgPesquisar = (RadioGroup)  findViewById(R.id.rgPesquisar);
+	                String strPesquisa = "";
+	                       
+	                 switch (rgPesquisar.getCheckedRadioButtonId()) 
+	                {
+	     case R.id.rbNome : strPesquisa = "NOM_CLI LIKE ?";
+	                   break;
+	                                 
+	     case R.id.rbCidade : strPesquisa = "CID_CLI LIKE ?";
+	                   break;
+	                }
+	                        
+	                   List<String> dados =   
+	                   PesquisarDados("TB_CLIENTE", strPesquisa, 
+	                                 "COD_CLI",
+	     "COD_CLI", "NOM_CLI", "CID_CLI");
+	                      
+	                   StringBuilder sb = new StringBuilder();
+	     sb.append("Cod.| "+unFuncoes.CaracterDireita("Nome", 15," ") +" | Cidade \n");
+	     sb.append(unFuncoes.CaracterDireita("-", 35,"-")+"\n");
+	                           
+	                   for (String registros : dados) 
+	                   {
+	                        sb.append(registros + "\n");
+	                   }
+	                              
+	                   resultado.setText(sb.toString()); 
+	              }    
+	             });
+	     }
+
+	      
+
+	     public void abreoucriaBD()
+	     {
+	         try 
+	         {
+	     bancodados = openOrCreateDatabase("DBTHECLUB", MODE_WORLD_READABLE, null);
+	     String sql = "CREATE TABLE IF NOT EXISTS TB_CLIENTE"
+	                       +"(COD_CLI INTEGER PRIMARY KEY, " +
+	     "NOM_CLI TEXT, CID_CLI TEXT, EST_CLI TEXT,  PRO_CLI TEXT)";
+	              bancodados.execSQL(sql);
+	          } 
+	          catch (Exception e) 
+	          {
+	     unFuncoes.MensagemAlerta("Erro", "Ocorreu algum erro ao abrir ou criar o Banco de Dados!", Android_PesquisarDados.this);   
+	          }
+	     }
+	        
+
+	     public List<String> PesquisarDados(String NomeTabela, String ClausulaWhere, String  OrdemCampo, String...TipoCampos) 
+	     {
+	     EditText edtPesq = (EditText) findViewById(R.id.edtPesquisar);
+
+	         List<String> list = new ArrayList<String>();
+	         ponteiro = bancodados.query(NomeTabela, 
+	                                   TipoCampos,
+	                                   ClausulaWhere,
+	     new String[]  {"%"+edtPesq.getText().toString() + "%"}, 
+	                                   null,
+	                                   null, 
+	                                   OrdemCampo);
+	         
+	     if (ponteiro.moveToFirst()) 
+	         {
+	              do 
+	              {
+	                list.add(unFuncoes.ZeroEsquerda(Integer.parseInt(ponteiro.getString(0)),3) +
+	     " | " + unFuncoes.CaracterDireita(ponteiro.getString(1),15," ") + 
+	     " | "+ unFuncoes.CaracterDireita(ponteiro.getString(2),10," "));
+	              } 
+	               while (ponteiro.moveToNext());
+	         }
+	          
+	         if (ponteiro != null && !ponteiro.isClosed()) 
+	         {
+	              ponteiro.close();
+	         }
+
+	         return list;
+	}
+}

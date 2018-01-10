@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.catalogolivros"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon_livraria"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <resources>
+            
+        </resources>
+        
+        <activity
+            android:name="app.Activities.login.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.AddLivroActivity" >
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.ListarTodos" >
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.ListarCategoria" >
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.ListarTitulo">
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.InformacaoLivro" >
+        </activity>
+        <activity
+            android:name="app.livroDAO.EditLivro" >
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.UpdateDelete" >
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.UpdateDeleteCampos">
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.PesquisaLivro">
+        </activity>
+        <activity
+            android:name="app.Activities.catalogo.MainActivity">
+
+        </activity>
+        <activity
+            android:name="app.Activities.login.Principal">
+        </activity>
+        <activity
+            android:name="app.Activities.login.Equipe">
+        </activity>
+        <activity
+            android:name="app.Activities.login.AltSenha">
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,3 @@
+INDEX VERSION 1.130+C:\Users\Rennan Zaniboni\Desktop\ProjetoFinalLivrariaAndroid\ProjetoFinalLivrariaAndroid\.metadata\.plugins\org.eclipse.jdt.core
+3786339977.index
+3006240115.index
